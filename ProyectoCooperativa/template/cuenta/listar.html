@@ -1,0 +1,81 @@
+{% extends "master.html" %}
+{% block lista %}
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <title></title>
+</head>
+
+<body>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><i class="fas fa-list-ul"></i> LISTADO DE CUENTAS Y CLIENTES</a>
+  </li>
+
+</ul>
+<div class="tab-content" id="myTabContent">
+
+<!--==============================================CLIENTES============================================-->
+
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+<table class="table table-striped" style="border: black 2px solid">
+ <thead ><h2 style="font-family: 'Abril Fatface', cursive; " align="center">DEPOSITOS Y RETIROS</h2>
+    <br>
+  <tr style="font-family: 'Spicy Rice', bold; color:#fdfefe ; border: black 2px solid "  bgcolor="#e31717">
+    <td scope="col"><i class="fas fa-id-card"></i>Cedula</td>
+    <td scope="col"><i class="fas fa-user-circle"></i>Nombres</td>
+    <td scope="col"><i class="fas fa-envelope-open"></i> Correo</td>
+    <td scope="col"><i class="fas fa-map-marked"></i> Direccion</td>
+    <td scope="col"><i class="fas fa-sort-numeric-up"></i> Numero de Cuenta</td>
+    <td scope="col"><i class="fas fa-stream"></i>Tipo</td>
+    <td scope="col"><i class="fas fa-dollar-sign"></i> Saldo</td>
+    <td scope="col"><i class="fas fa-hand-holding-usd"></i>Deposito </td>
+    <td scope="col"><i class="fas fa-hand-holding-usd"></i>Retiro </td>
+</tr>
+
+ </thead>
+ <tbody >
+   {% for list in listaCuentas %}
+  <tr sstyle="font-family: 'Spicy Rice', bold; ">
+    <td scope="row">{{list.cedula}}</td>
+    <td>{{list.nombres}} {{list.apellidos}}</td>
+    <td>{{list.correo}}</td>
+    <td>{{list.direccion}}</td>
+    <td>{{list.cuenta__numero}}</td>
+    <td>{{list.cuenta__tipoCuenta}}</td>
+    <td>{{list.cuenta__saldo}}</td>
+
+    <td><a  href="{% url 'deposito' cedula=list.cedula numero=list.cuenta__numero %} " class="btn btn-danger" style="background-color: #5d5e5f  ; border-color: black">Deposito</a></td>
+     <td><a  href="{% url 'retiro' cedula=list.cedula numero=list.cuenta__numero %} " class="btn btn-danger" style="background-color: #5d5e5f  ; border-color: black">Retiro</a></td>
+    </tr>
+
+  {% endfor%}
+ </tbody>
+
+
+</table>
+
+  </div>
+</div>
+</body>
+</html>
+
+
+<script >
+
+table {
+  border: black 5px solid;
+}
+</script>
+
+{% endblock %}
+
+
+
+
+

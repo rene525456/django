@@ -1,0 +1,146 @@
+{% extends "master.html" %}
+{% block lista %}
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <title></title>
+</head>
+
+<body>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><i class="fas fa-list-ul"></i> LISTADO DE CLIENTES</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><i class="fas fa-list"></i> LISTADO DE CUENTAS</a>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link" id="transaccion-tab" data-toggle="tab" href="#transaccion" role="tab" aria-controls="profile" aria-selected="false"><i class="fas fa-list"></i> TRANSACCIONES REALIZADAS</a>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+
+<!--==============================================CLIENTES============================================-->
+
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+<table class="table table-striped" style="border: black 2px solid">
+ <thead ><h2 style="font-family: 'Abril Fatface', cursive; " align="center">LISTA DE CLIENTES</h2>
+    <br>
+  <tr style="font-family: 'Spicy Rice', bold; color:#fdfefe ; border: black 2px solid "  bgcolor="#e31717">
+    <td scope="col"><i class="fas fa-id-card"></i> Cedula</td>
+    <td scope="col"><i class="fass fa-user-circle"></i> Nombres</td>
+    <td scope="col"><i class="fas fa-envelope-open"></i> Correo</td>
+    <td scope="col"><i class="fas fa-map-marked"></i> Direccion</td>
+    <td scope="col"><i class="fas fa-calendar-check"></i> Fecha</td>
+    <td scope="col"><i class="fas fa-cogs"></i> Modificar </td>
+    <td scope="col"><i class="fas fa-plus-square"></i> Cuenta</td>
+    <td scope="col"><i class="fas fa-user-minus"></i> Eliminar </td>
+
+  </tr>
+
+ </thead>
+ <tbody >
+   {% for c in lista %}
+  <tr sstyle="font-family: 'Spicy Rice', bold; ">
+    <td scope="row">{{c.cedula}}</td>
+    <td>{{c.nombres}} {{c.apellidos}}</td>
+    <td>{{c.correo}}</td>
+    <td>{{c.direccion}}</td>
+    <td>{{c.fechaNacimiento}}</td>
+    <td><a href="modificar?cedula={{c.cedula}}" class="btn btn-danger" style="background-color: #5d5e5f  ; border-color: black">Modificar</a></td>
+    <td><a  href="crearCuenta?cedula={{c.cedula}}" class="btn btn-danger" style="background-color:  #0a476e ; border-color: black">&nbsp  Nueva &nbsp</a></td>
+    <td><a  href="eliminar?cedula={{c.cedula}}" class="btn btn-danger" style="background-color: #e31717 ; border-color: black">Eliminar</a></td>
+
+  </tr>
+  {% endfor%}
+ </tbody>
+
+
+</table>
+
+  </div>
+ <!--==============================================CUENTAS============================================-->
+
+
+
+  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+<table class="table table-striped" style="border: black 2px solid">
+ <thead ><h2 style="font-family: 'Abril Fatface', cursive;" align="center">LISTA DE CUENTAS</h2>
+    <br>
+  <tr style="font-family: 'Spicy Rice', bold; color:#fdfefe ; border: black 2px solid "  bgcolor="#e31717">
+    <td scope="col"><i class="fas fa-sort-numeric-up"></i> Numero</td>
+
+    <td scope="col"><i class="fas fa-dollar-sign"></i> Saldo</td>
+    <td scope="col"><i class="fas fa-stream"></i> Tipo de Cuenta</td>
+    <td scope="col"><i class="fas fa-id-card"></i> Cliente</td>
+    <td scope="col"><i class="fas fa-folder-minus"></i> Dar de baja</td>
+</tr>
+
+ </thead>
+ <tbody>
+   {% for g in listaC %}
+  <tr style="font-family: 'Spicy Rice', bold; ">
+    <td>{{g.numero}}</td>
+    <td>{{g.saldo}}</td>
+    <td>{{g.tipoCuenta}}</td>
+    <td>{{g.cliente}}</td>
+
+    <td><a href="baja?numero={{g.numero}}" class="btn btn-danger" style="background-color: #e31717 ; border-color: black">Baja</a></td>
+  </tr>
+  {% endfor%}
+ </tbody>
+</table>
+  </div>
+
+
+
+<!--==============================================TRANSACCIONES REALIZADAS================================-->
+
+
+<div class="tab-pane fade" id="transaccion" role="tabpanel" aria-labelledby="transaccion-tab">
+<table class="table table-striped" style="border: black 2px solid">
+ <thead ><h2 style="font-family: 'Abril Fatface', cursive;" align="center">LISTA DE CUENTAS</h2>
+    <br>
+  <tr style="font-family: 'Spicy Rice', bold; color:#fdfefe ; border: black 2px solid "  bgcolor="#e31717">
+    <td scope="col"><i class="fas fa-sort-numeric-up"></i> Numero de Cuenta</td>
+    <td scope="col"><i class="fas fa-calendar-check"></i>  Fecha</td>
+    <td scope="col"><i class="fas fa-stream"></i> Tipo de Transaccion</td>
+    <td scope="col"><i class="fas fa-money-bill-alt"></i> Valor de la Transaccion</td>
+    <td scope="col"><i class="fas fa-user-tag"></i> Responsable Transaccion</td>
+  </tr>
+
+ </thead>
+ <tbody>
+   {% for lst in listaTransaccion %}
+      <tr sstyle="font-family: 'Spicy Rice', bold; ">
+        <td scope="row">{{lst.numero}}</td>
+        <td>{{lst.transaccion__fecha}}</td>
+        <td>{{lst.transaccion__tipo}}</td>
+        <td>{{lst.transaccion__valor}}</td>
+        <td>{{lst.transaccion__responsable}}</td>
+        </tr>
+  {% endfor%}
+ </tbody>
+</table>
+</div>
+
+
+</div>
+</body>
+</html>
+<script>
+
+table {
+  border: black 5px solid;
+}
+</script>
+
+{% endblock %}
+
+

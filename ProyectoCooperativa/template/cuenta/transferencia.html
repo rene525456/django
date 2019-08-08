@@ -1,0 +1,306 @@
+{% extends "crear.html" %}
+{% load staticfiles %}
+<!DOCTYPE html>
+
+{{mensaje}}  <br>
+
+{% block transaccion %}
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+ <!--==============================================Transferencia============================================-->
+<br>
+                        <!--========================Boton HOME=========================-->
+    <a href="{% url 'clientes' %}"><button class="login100-form-btn btn-lg btn-block"><i class="fas fa-home"></i> &nbsp  Home</button></a>
+<br>
+<!--======================================================BUSCAR 1==============================================-->
+<div class="container">
+ <h2 style="font-family: 'Spicy Rice', bold; color:black; ">Buscar Remitente</h2>
+
+  <div class="showback">
+            <!--======================================#CUENTA==========================================-->
+                <input id='cuenta_Remitente' type="text" class="form-control" placeholder="Cuenta del Remitente"><p>
+
+            <!--======================================BOTON BUSCAR==========================================-->
+
+
+            <div class="container-login100-form-btn">&nbsp&nbsp
+                <button type="button" class="login100-form-btn" id="btn_Remitente" onclick=buscar_Remitente()>Buscar Remitente</button>
+            </div>
+            <br>
+
+            <!--======================================ALERTA==========================================-->
+            <div id="alerta_Remitente" class="container"></div>
+
+        <div id="Remitente" style="display: none">
+           <!--======================================FORM==========================================-->
+            <form class="login100-form validate-form" method="GET">
+
+                    <div class="wrap-input100 validate-input m-b-18" data-validate = "Cedula is required">
+
+	                   <span class="label-input100"><i class="fas fa-id-card"></i> Cedula</span>
+	                    <input class="input100" type="text" id="cedula_Remitente" disabled="true">
+                    </div>
+
+                    <div class="wrap-input100 validate-input m-b-18" data-validate = "Nombres is required">
+
+	                   <span class="label-input100"><i class="fas fa-user-circle"></i> Nombres</span>
+	                    <input class="input100" type="text" id="nombres_Remitente" disabled="true">
+                    </div>
+
+                    <div class="wrap-input100 validate-input m-b-18" data-validate = "Cuenta is required">
+
+	                   <span class="label-input100"><i class="fas fa-sort-numeric-up"></i> Cuenta</span>
+	                    <input class="input100" type="number" id="numero_Remitente" disabled="true">
+                    </div>
+
+                    <div class="wrap-input100 validate-input m-b-18" data-validate = "Saldo is required">
+
+	                   <span class="label-input100"><i class="fas fa-dollar-sign"></i>Saldo</span>
+	                    <input class="input100" type ="text" id="saldo_Remitente" disabled="true">
+                    </div>
+
+                    <div class="wrap-input100 validate-input m-b-18" data-validate = "Monto is required">
+
+	                   <span class="label-input100"><i class="fas fa-stream"></i>Tipo</span>
+	                    <input class="input100" type="text" id="tipo_Remitente" disabled="true">
+                    </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--================================================FIN BUSCAR1==========================================-->
+
+<!--================================================= BUSCAR 2==========================================-->
+
+ <div class="container">
+    <h2 style="font-family: 'Spicy Rice', bold; color:black; ">Buscar Destinatario</h2>
+    <div class="showback">
+         <!--======================================#CUENTA==========================================-->
+          <input id='cuenta_Destinatario' type="text" class="form-control" placeholder="Cuenta de Destinatario"><p></p>
+          <!--======================================BOTON BUSCAR==========================================-->
+            <div class="container-login100-form-btn">&nbsp&nbsp
+                <button type="button" class="login100-form-btn" id="btn_Destinatario" onclick=buscar_Destinatario()>Buscar Destinatario</button>
+            </div>
+            <br>
+
+        <!--======================================ALERTA==========================================-->
+        <div class="container" id="alerta_Destinatario"></div>
+        <div id="Destinatario" style="display: none">
+        <!--======================================FORM==========================================-->
+                <form class="login100-form validate-form" method="GET">
+
+                    <div class="wrap-input100 validate-input m-b-18" data-validate = "Cedula is required">
+
+	                   <span class="label-input100"> <i class="fas fa-id-card"></i>Cedula</span>
+	                    <input class="input100" type="text" id="cedula_Destinatario" disabled="true">
+                    </div>
+
+                    <div class="wrap-input100 validate-input m-b-18" data-validate = "Cedula is required">
+
+	                   <span class="label-input100"><i class="fas fa-user-circle"></i> Nombres</span>
+	                    <input class="input100" type="text" id="nombres_Destinatario" disabled="true">
+                    </div>
+
+                    <div class="wrap-input100 validate-input m-b-18" data-validate = "Cedula is required">
+
+	                   <span class="label-input100"><i class="fas fa-sort-numeric-up"></i>  Cuenta</span>
+	                    <input class="input100" type="number" id="numero_Destinatario" disabled="true">
+                    </div>
+
+                    <div class="wrap-input100 validate-input m-b-18" data-validate = "Cedula is required">
+
+	                   <span class="label-input100"><i class="fas fa-dollar-sign"></i> Saldo</span>
+	                    <input class="input100" type="text" id="saldo_Destinatario" disabled="true">
+                    </div>
+
+                   <div class="wrap-input100 validate-input m-b-18" data-validate = "Cedula is required">
+
+	                   <span class="label-input100"><i class="fas fa-stream"></i>Tipo Cuenta</span>
+	                    <input class="input100" type="text" id="tipo_Destinatario" disabled="true">
+                    </div>
+            </form>
+        </div>
+    </div>
+ </div>
+<!--===========================FIN BUSCAR 2=================================-->
+<br>
+<br>
+ <!--======================================BOTON TRANSFERENCIA==========================================-->
+ <div class="container-login100-form-btn" id="boton" style="display: none">&nbsp&nbsp
+    <button type="button" class="login100-form-btn" id="btn_Buscar_Deposito" data-toggle="modal" data-target="#exampleModalCenter" onclick=movimiento()>Transferencia</button>&nbsp &nbsp
+    <a href="{% url 'clientes' %}"><button class="login100-form-btn"><i class="fas fa-home"></i> &nbsp  Home</button> </a>
+</div>
+<br>
+
+<!--===================================================0MODAL================================================-->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        {% csrf_token %}
+    <div class="container">
+
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+
+               <div class=" modal-header login100-form-title" id="exampleModalLongTitle" style="background-image: url({% static 'images/bg-01.jpg' %});">
+					<span class="login100-form-title-1">
+						<i class="fas fa-pen-nib"></i> TRANSFERIR DINERO
+					</span>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+				</div>
+
+        <div class="modal-body">
+            <div class="form-horizontal style-form">
+
+
+                 <div class="form-group">
+                    <label for="recipient-name label-input100" class="col-form-label input100"><i class="fas fa-money-bill-alt"></i> Monto  Actual</label>
+                    <input type="number" class="form-control input100" id="Monto_Actual" name="valor" step="0.001" disabled>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="recipient-name label-input100" class="col-form-label input100"><i class="fas fa-money-bill-alt"></i> Monto a Transferir</label>
+                    <div id="div_valor">
+
+                    <input type="number" class="form-control input100" id="id_Monto" name="valor" step="0.001">
+                    <br>
+                    <div  id="monto_estado"></div>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="recipient-name label-input100" class="col-form-label input100"><i class="fas fa-pen-fancy"></i> Descripcion</label>
+                    <textarea class="input100"  id="id_Descripcion" name="descripcion">Transferencia de dinero realizada</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="recipient-name label-input100" class="col-form-label input100"><i class="fas fa-user-tag"></i> Responsable: </label>
+                    <input  class="form-control input100" id="id_Responsable" name="responsable" maxlength="155" value="{{user}}" disabled>
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <div class="modal-footer" id="mostrarboton">
+        <button id="boton_Transferencia" type="button" class="login100-form-btn" onclick=transferir() >Transferir</button>
+        </div>
+
+    </div>
+</div>
+    </div>
+
+</div>
+<!--==================================================FIN MODAL==================================-->
+<!--======================================SCRIPT==========================================-->
+<!--VERIFICAR SALDO PARA TRANSACCION-->
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+$('#id_Monto').change(function () {
+    var actual = $('#Monto_Actual').val()
+    var valor = $('#id_Monto').val()
+    if (parseFloat(valor) > parseFloat(actual)) {
+        $('#monto_estado').html('<span class="help-block alert alert-warning" role="alert">  Asegures de que el valor sea menor al saldo actual</span>')
+        $('#boton_Transferencia').attr('disabled', true)
+    } else {
+        $('#monto_estado').html("")
+        $('#boton_Transferencia').removeAttr('disabled',false)
+    }
+});
+
+</script>
+<!--BUSCAR CUENTAS-->
+<script type="application/javascript">
+function buscar_Remitente() {
+    var aux1 = $('#cuenta_Remitente').val()
+    var aux2 = $('#Remitente')
+    var aux3 = $('#boton')
+    $.ajax({
+        type: "GET",
+        url: "{%url 'buscarTransferencia' %}",
+        data: "numero=" + aux1,
+        success: function (data) {
+            if (data) {
+                array = data.split(";")
+                $('#alerta_Remitente').html('<div class="alert alert-primary">Cuenta para Transferencia hallada</div>')
+                aux2.show()
+                $('#cedula_Remitente').val(array[0])
+                $('#nombres_Remitente').val(array[1] + " " + array[2])
+                $('#numero_Remitente').val(array[4])
+                $('#saldo_Remitente').val(array[5])
+                $('#Monto_Actual').val(array[5])
+                $('#tipo_Remitente').val(array[6])
+                aux3.show()
+            } else {
+                $('#alerta_Remitente').html('<div class="alert alert-danger">No se hallo la Cuenta para la Transferencia </div>')
+                aux2.hide()
+                $('#cedula_Remitente').val('')
+                $('#nombres_Remitente').val('')
+                $('#numero_Remitente').val('')
+                $('#saldo_Remitente').val('')
+                $('#tipo_Remitente').val('')
+                aux3.hide()
+            }
+        }
+    });
+}
+
+function buscar_Destinatario() {
+    var aux1 = $('#cuenta_Destinatario').val()
+    var aux2 = $('#Destinatario')
+    var aux3 = $('#boton')
+    $.ajax({
+        type: "GET",
+        url: "{%url 'buscarTransferencia' %}",
+        data: "numero=" + aux1,
+        success: function (data) {
+            if (data) {
+                array = data.split(";")
+                $('#alerta_Destinatario').html('<div class="alert alert-primary">Cuenta para Transferencia hallada</div>')
+                aux2.show()
+                $('#cedula_Destinatario').val(array[0])
+                $('#nombres_Destinatario').val(array[1] + " " + array[2])
+                $('#numero_Destinatario').val(array[4])
+                $('#saldo_Destinatario').val(array[5])
+                $('#tipo_Destinatario').val(array[6])
+                aux3.show()
+            } else {
+                $('#alerta_Destinatario').html('<div class="alert alert-danger">No se hallo la Cuenta para la Transferencia</div>')
+                aux2.hide()
+                $('#cedula_Destinatario').val('')
+                $('#nombres_Destinatario').val('')
+                $('#numero_Destinatario').val('')
+                $('#saldo_Destinatario').val('')
+                $('#tipo_Destinatario').val('')
+                aux3.hide()
+            }
+        }
+    });
+}
+
+
+function transferir(){
+    var valor = $('#id_Monto').val()
+    var descripcion = $('#id_Descripcion').val()
+    var responsable = $('#id_Responsable').val()
+    var cedulaRemitente = $('#cedula_Remitente').val()
+    var numeroRemitente = $('#numero_Remitente').val()
+    var cedulaDestinatario =  $('#cedula_Destinatario').val()
+    var numeroDestinatario = $('#numero_Destinatario').val()
+   window.location.href = '{%url "transferencia"%}' + '?numeroRemitente=' + numeroRemitente + '&&cedulaRemitente=' + cedulaRemitente + '&&numeroDestinatario=' + numeroDestinatario + '&&cedulaDestinatario=' + cedulaDestinatario + '&&valor=' + valor + '&&descripcion=' + descripcion + '&&responsable=' + responsable
+}
+
+function movimiento() {
+    var descripcion = $('#id_Descripcion')
+    var cuentaR = $('#numero_Remitente').val()
+    var cuentaD = $('#numero_Destinatario').val()
+    descripcion.val("Se realizó una transferencia desde el número de cuenta Remitente: "+cuentaR + " hacia el número de cuenta Destinatario: "+cuentaD+" Con saldo de: ")
+}
+</script>
+{%  endblock %}

@@ -1,0 +1,47 @@
+{% load staticfiles i18n %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Cooperativa</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	{% block css %}
+	<!--<link href="{% static 'default.css' %}" rel="stylesheet" type="text/css" media="all" />
+	<link href="{% static 'fonts.css' %}" rel="stylesheet" type="text/css" media="all" />
+	-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	
+	
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	{% endblock %}
+</head>
+	<body>
+
+		<div class="container">
+			<div class="card">
+	  			{% include "header.html" %}
+	  			{% include "nav.html" %}
+		        {% block contenido %}
+
+		        {% endblock %}
+
+
+				{% block lista %}
+				{% endblock %}
+
+				{% block nuevo %}
+
+				{% endblock %}
+
+				{% include 'footer.html' %}
+			</div>
+		</div>
+	</body>
+</html>

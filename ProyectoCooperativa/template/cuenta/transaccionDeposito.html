@@ -1,0 +1,64 @@
+{% extends "crear.html" %}
+<!DOCTYPE html>
+
+<br>
+
+{% block transaccion %}
+<form class="login100-form validate-form" method="POST">{% csrf_token %}
+
+
+    <div class="wrap-input100 validate-input m-b-26" data-validate="Cedula is required">
+        <span class="label-input100"><i class="fas fa-money-bill-alt"></i> Monto Actual: </span>
+        <br>
+        {%for cnt in cuenta %}
+        <input type="text" class="form-control" id="txt_montoActuañ" value="{{cnt.saldo}}" disabled>
+
+        {%endfor%}
+        <span class="focus-input100"></span>
+    </div>
+
+
+    <div class="wrap-input100 validate-input m-b-26" data-validate="Nombre is required">
+        <span class="label-input100"><i class="fas fa-money-bill-alt"></i> Monto a Depositar: </span>
+        <br>
+        <label>{{ formularioTransaccion.valor}}</label>
+
+        <span class="focus-input100"></span>
+    </div>
+
+    <div class="wrap-input100 validate-input m-b-26" data-validate="Apellido is required">
+        <span class="label-input100"><i class="fas fa-pen-fancy"></i>Descripcion: </span>
+        <br>
+        <label>{{ formularioTransaccion.descripcion}}</label>
+
+        <span class="focus-input100"></span>
+    </div>
+
+    <div class="wrap-input100 validate-input m-b-26" data-validate="Genero is required">
+        <span class="label-input100"><i class="fas fa-user-tag"></i> Responsable: </span>
+        <br>
+        <label>{{ formularioTransaccion.responsable}}</label>
+
+        <span class="focus-input100"></span>
+    </div>
+
+
+
+
+    <br>
+
+    <div class="container-login100-form-btn">
+
+        <button type="submit" value="Guardar" class="login100-form-btn"><i class="fas fa-check-circle"></i> &nbsp Realizar Transaccion</button>&nbsp
+        <a href="{% url 'listar' %}"><button class="login100-form-btn"><i class="fas fa-times-circle"></i> &nbsp Cancelar</button></a>
+
+    </div>
+</form>
+<script>
+    $('#id_descripcion').val('Se efectuo un Deposito')
+    $('#id_responsable').val("{{user}}")
+
+</script>
+
+
+{% endblock %}

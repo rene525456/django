@@ -1,0 +1,58 @@
+{% if user.is_authenticated %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a href="{% url 'clientes' %}" class="nav-link"><i class="fa fa-home" style="font-size:24px"></i>  HOME      </a>
+      </li>
+      <li class="nav-item">
+        <a href="{% url 'crear' %}" class="nav-link"><i class="fa fa-user-plus" style="font-size:24px"></i> Nuevo Usuario</a>
+      </li>
+      <li class="nav-item">
+        
+        
+
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="material-icons" style="font-size:24px">attach_money</i>Operaciones
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item  " href="{% url 'listar' %} " > <i class="fas fa-comment-dollar"></i> Transacción</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item " href="{% url 'transferenciaLista' %}" ><i class="fas fa-comment-dollar"></i> Transferencia</a>
+                </div>
+              </li>
+
+
+
+
+
+
+
+
+      </li>
+    </ul>
+    <span class="navbar-text">
+      <span>Bienvenido: <i class="fa fa-user" style="font-size:24px"></i>  {{user.username}} | 
+  <a href="{% url 'logout' %}"> Salir</a></span>
+
+
+
+
+    </span>
+  </div>
+</nav>
+{% endif %}
+
+   {% for msg in messages %}
+   <div class="alert alert-{{msg.level_tag}}" role="alert">
+
+       {{msg.message}}
+
+   </div>
+
+   {% endfor %}

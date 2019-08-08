@@ -1,0 +1,54 @@
+{% extends "crear.html" %}
+<!DOCTYPE html>
+
+<br>
+
+{% block nuevo %}
+
+
+
+
+<form class="login100-form validate-form"  method="POST">{% csrf_token %}
+
+
+    <div class="wrap-input100 validate-input m-b-26" data-validate="Número is required">
+						<span class="label-input100"><i class="fas fa-hashtag"></i> Cuenta    </span>
+						<br>
+       <label >{{ formulario2.numero}}</label>
+
+						<span class="focus-input100"></span>
+    </div>
+
+    <div class="wrap-input100 validate-input m-b-26" data-validate="Estado is required">
+						<span class="label-input100"> <i class="fas fa-check-circle"></i> Estado </span>
+						<br>
+       <label >{{ formulario2.estado}}</label>
+
+						<span class="focus-input100"></span>
+    </div>
+
+    <div class="wrap-input100 validate-input m-b-26" data-validate="Saldo is required">
+						<span class="label-input100"><i class="fas fa-dollar-sign"></i> Saldo &nbsp &nbsp </span>
+						<br>
+       <label >{{ formulario2.saldo}}</label>
+
+						<span class="focus-input100"></span>
+    </div>
+
+    <div class="wrap-input100 validate-input m-b-26" data-validate="Saldo is required">
+						<span class="label-input100"><i class="fas fa-stream"></i>  Tipo de Cuenta</span>
+						<br>
+       <label >{{ formulario2.tipoCuenta}}</label>
+
+						<span class="focus-input100"></span>
+    </div>
+
+
+    <div class="container-login100-form-btn">
+    <button type="submit" value="Guardar" class="login100-form-btn"><i class="fas fa-check-circle"></i> &nbsp Guardar</button>&nbsp &nbsp
+    <a href="{% url 'clientes' %}"><button class="login100-form-btn"><i class="fas fa-times-circle"></i> &nbsp  Cancelar</button></a>
+
+    </div>
+</form>
+
+{%  endblock %}

@@ -1,0 +1,100 @@
+{% extends "crear.html" %}
+<!DOCTYPE html>
+
+<br>
+
+{% block nuevo %}
+
+<form class="login100-form validate-form"  method="POST">{% csrf_token %}
+
+     <div class="wrap-input100 validate-input m-b-26" data-validate="Cedula is required">
+
+						<span class="label-input100"> <i class="fas fa-id-card"></i> Cedula</span>
+						<br>
+       <label >{{ f.cedula}}</label>
+
+						<span class="focus-input100"></span>
+    </div>
+
+
+   <div class="wrap-input100 validate-input m-b-26" data-validate="Nombre is required">
+						<span class="label-input100"><i class="fas fa-user-circle"></i> Nombre  </span>
+						<br>
+       <label >{{ f.nombres}}</label>
+
+						<span class="focus-input100"></span>
+    </div>
+
+    <div class="wrap-input100 validate-input m-b-26" data-validate="Apellido is required">
+						<span class="label-input100"><i class="fas fa-user-circle"></i> Apellido   </span>
+						<br>
+       <label >{{ f.apellidos}}</label>
+
+						<span class="focus-input100"></span>
+    </div>
+
+     <div class="wrap-input100 validate-input m-b-26" data-validate="Genero is required">
+						<span class="label-input100"><i class="fas fa-mars"></i> <i class="fas fa-venus"></i> Genero </span>
+						<br>
+       <label >{{ f.genero}}</label>
+
+						<span class="focus-input100"></span>
+    </div>
+
+    <div class="wrap-input100 validate-input m-b-26" data-validate="Estad Civil is required">
+						<span class="label-input100"><i class="fas fa-stream"></i> Estado Civil   </span>
+						<br>
+       <label>{{ f.estadoCivil}}</label>
+
+						<span class="focus-input100"></span>
+    </div>
+
+    <div class="wrap-input100 validate-input m-b-26" data-validate="Fecha is required">
+						<span class="label-input100"><i class="fas fa-calendar-check"></i> Fecha Nacimiento  </span>
+						<br>
+       <label >{{ f.fechaNacimiento}}</label>
+
+						<span class="focus-input100"></span>
+    </div>
+
+     <div class="wrap-input100 validate-input m-b-26" data-validate="Correo is required">
+						<span class="label-input100"><i class="fas fa-envelope-open"></i>  Correo  </span>
+						<br>
+       <label >{{ f.correo}}</label>
+
+						<span class="focus-input100"></span>
+    </div>
+
+     <div class="wrap-input100 validate-input m-b-26" data-validate="Telefono is required">
+						<span class="label-input100"><i class="fas fa-phone"></i> Telefono  </span>
+						<br>
+       <label >{{ f.telefono}}</label>
+
+						<span class="focus-input100"></span>
+    </div>
+
+    <div class="wrap-input100 validate-input m-b-26" data-validate="Celular is required">
+						<span class="label-input100"><i class="fas fa-mobile"></i> Celular:   </span>
+						<br>
+       <label>{{ f.celular}}</label>
+
+						<span class="focus-input100"></span>
+    </div>
+
+    <div class="wrap-input100 validate-input m-b-26" data-validate="Direccion is required">
+          <span class="label-input100"> <i class="fas fa-map-marked"></i>Direccion:   </span>
+						<br>
+       <label >{{ f.direccion}}</label>
+
+						<span class="focus-input100"></span>
+    </div>
+
+    <div class="container-login100-form-btn">
+    <button type="submit" value="Guardar" class="login100-form-btn"><i class="fas fa-check-circle"></i> &nbsp  Guardar</button>
+    &nbsp
+    <a href="{% url 'clientes' %}"><button class="login100-form-btn"><i class="fas fa-times-circle"></i> &nbsp Cancelar</button></a>
+
+    </div>
+</form>
+
+{%  endblock %}
