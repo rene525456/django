@@ -1,49 +1,38 @@
 {% extends "master.html" %}
-{% block lista %}
-<!DOCTYPE html>
-<html lang="">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-    <title></title>
-</head>
+{% block lista %}    
 
-<body>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item">
-    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><i class="fas fa-list-ul"></i> LISTADO DE CLIENTES</a>
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><i class="fa fa-list" style="font-size:24px"></i>
+ CLIENTES</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><i class="fas fa-list"></i> LISTADO DE CUENTAS</a>
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><i class="fa fa-list" style="font-size:24px"></i> CUENTAS</a>
   </li>
 
   <li class="nav-item">
-    <a class="nav-link" id="transaccion-tab" data-toggle="tab" href="#transaccion" role="tab" aria-controls="profile" aria-selected="false"><i class="fas fa-list"></i> TRANSACCIONES REALIZADAS</a>
+    <a class="nav-link" id="transaccion-tab" data-toggle="tab" href="#transaccion" role="tab" aria-controls="profile" aria-selected="false"><i class="fa fa-list" style="font-size:24px"></i> TRANSACCIONES</a>
   </li>
 </ul>
 <div class="tab-content" id="myTabContent">
 
 <!--==============================================CLIENTES============================================-->
 
-  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 <table class="table table-striped" style="border: black 2px solid">
  <thead ><h2 style="font-family: 'Abril Fatface', cursive; " align="center">LISTA DE CLIENTES</h2>
-    <br>
-  <tr style="font-family: 'Spicy Rice', bold; color:#fdfefe ; border: black 2px solid "  bgcolor="#e31717">
-    <td scope="col"><i class="fas fa-id-card"></i> Cedula</td>
-    <td scope="col"><i class="fass fa-user-circle"></i> Nombres</td>
-    <td scope="col"><i class="fas fa-envelope-open"></i> Correo</td>
-    <td scope="col"><i class="fas fa-map-marked"></i> Direccion</td>
-    <td scope="col"><i class="fas fa-calendar-check"></i> Fecha</td>
-    <td scope="col"><i class="fas fa-cogs"></i> Modificar </td>
-    <td scope="col"><i class="fas fa-plus-square"></i> Cuenta</td>
-    <td scope="col"><i class="fas fa-user-minus"></i> Eliminar </td>
-
+  <tr class="table-success">
+    <td scope="col"> Cédula</td>
+    <td scope="col"> Nombres</td>
+    <td scope="col"> Correo</td>
+    <td scope="col"> Dirección</td>
+    <td scope="col"> Fecha</td>
+    <td scope="col"> Modificar </td>
+    <td scope="col"> Cuenta</td>
+    <td scope="col"> Eliminar </td>
   </tr>
-
  </thead>
  <tbody >
    {% for c in lista %}
@@ -105,7 +94,7 @@
 
 <div class="tab-pane fade" id="transaccion" role="tabpanel" aria-labelledby="transaccion-tab">
 <table class="table table-striped" style="border: black 2px solid">
- <thead ><h2 style="font-family: 'Abril Fatface', cursive;" align="center">LISTA DE CUENTAS</h2>
+ <thead ><h2 style="font-family: 'Abril Fatface', cursive;" align="center">LISTA DE TRANSACCIONES</h2>
     <br>
   <tr style="font-family: 'Spicy Rice', bold; color:#fdfefe ; border: black 2px solid "  bgcolor="#e31717">
     <td scope="col"><i class="fas fa-sort-numeric-up"></i> Numero de Cuenta</td>
@@ -132,8 +121,7 @@
 
 
 </div>
-</body>
-</html>
+
 <script>
 
 table {
