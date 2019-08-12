@@ -13,11 +13,11 @@ from weasyprint.fonts import FontConfiguration
 from django.template.loader import get_template,render_to_string
 from django.http import FileResponse
 from reportlab.pdfgen import canvas
+from django.contrib import messages
 
 @login_required
 def principal(request):
     usuario=request.user
-    print('xxxxxxxxxxxx')
     print(usuario)
     if usuario.has_perm('modelo.add_cliente'):
         print('tienen el permiso')
@@ -36,7 +36,6 @@ def principal(request):
 @login_required
 def listar(request):
     usuario=request.user
-    print('xxxxxxxxxx')
     print(usuario)
     if usuario.has_perm('modelo.add_cliente'):
         print('tiene el permiso')
@@ -56,9 +55,6 @@ def listar(request):
 #user.user_permissions.remove()
 #user.is_member()
 #------------------------------------
-
-def saludar(request):
-    return HttpResponse('Hola Clase')
 
 @login_required
 def crear(request):
@@ -89,6 +85,7 @@ def crear(request):
                 cuenta.tipoCuenta=datos2.get('tipoCuenta')
                 cuenta.cliente=cliente
                 cuenta.save()
+                messages.success(request, 'Usuario creado')
                 return redirect(principal)
             else:
                 return render(request, 'login/acceso_prohibido.html')
