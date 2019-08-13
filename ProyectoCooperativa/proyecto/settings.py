@@ -55,10 +55,10 @@ WSGI_APPLICATION = 'proyecto.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'bd_cooperativa',
-        'USER': 'cooperativa',
-        'PASSWORD': 'cooperativa',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'db2.db',
+#        'USER': 'cooperativa',
+#        'PASSWORD': 'cooperativa',
         'HOST': 'localhost',
         'PORT': '',
     }
