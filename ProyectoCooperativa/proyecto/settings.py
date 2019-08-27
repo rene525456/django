@@ -7,7 +7,7 @@ SECRET_KEY = 'gix36@4$(&k7a1+x*_mmr8=8$y^h#6gu!9qj1!a5ky(pv!n(j7'
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost','127.0.0.1','10.20.7.54']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -55,10 +55,10 @@ WSGI_APPLICATION = 'proyecto.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'db2.db',
-#        'USER': 'cooperativa',
-#        'PASSWORD': 'cooperativa',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'cooperativa_prueba',
+        'USER': 'karla',
+        'PASSWORD': 'karka',
         'HOST': 'localhost',
         'PORT': '',
     }
@@ -82,7 +82,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LOGIN_URL= reverse_lazy('autenticar') ##nombre tomado de login en urls
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-ec'
 
 TIME_ZONE = 'UTC'
 

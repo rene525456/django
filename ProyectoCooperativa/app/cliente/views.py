@@ -13,12 +13,12 @@ from weasyprint.fonts import FontConfiguration
 from django.template.loader import get_template,render_to_string
 from django.http import FileResponse
 from reportlab.pdfgen import canvas
-from django.contrib import messages
+
+from django.contrib.auth.models import Group, User
 
 @login_required
 def principal(request):
     usuario=request.user
-    print(usuario)
     if usuario.has_perm('modelo.add_cliente'):
         print('tienen el permiso')
         listaClientes= Cliente.objects.all().filter(estado=True).order_by('apellidos')
@@ -36,7 +36,6 @@ def principal(request):
 @login_required
 def listar(request):
     usuario=request.user
-    print(usuario)
     if usuario.has_perm('modelo.add_cliente'):
         print('tiene el permiso')
         listaC=Cliente.objects.all().filter().values('cedula', 'nombres', 'apellidos', 'correo','direccion', 'cuenta__numero', 'cuenta__saldo', 'cuenta__tipoCuenta').order_by('apellidos')
@@ -85,7 +84,17 @@ def crear(request):
                 cuenta.tipoCuenta=datos2.get('tipoCuenta')
                 cuenta.cliente=cliente
                 cuenta.save()
-                messages.success(request, 'Usuario creado')
+                
+
+                user = User.objects.create_user(cliente.cedula, cliente.correo, cliente.cedula)
+                # Update fields and then save again
+                user.first_name = cliente.nombres
+                user.last_name = cliente.apellidos
+                grupo = Group.objects.get(name = "clientes")
+                user.groups.add(grupo)
+                user.save()
+
+
                 return redirect(principal)
             else:
                 return render(request, 'login/acceso_prohibido.html')
