@@ -1,0 +1,24 @@
+<a href="{% url 'crear_cliente' %}">Nuevo Cliente</a>
+<table>
+    <thead>
+        <tr>
+            <td>Cédula</td>
+            <td>Apellidos</td>
+            <td>Nombres</td>
+            <td>Modificar</td>
+            <td>Cuentas</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for cliente in listaCliente %}
+        <tr>
+            <td>{{cliente.cedula}}</td>
+            <td>{{cliente.apellidos}}</td>
+            <td>{{cliente.nombres}}</td>
+            <td><a href="">Modificar</a></td>
+            <td><a>Cuentas</a></td>
+        </tr>
+
+        {% endfor %}
+    </tbody>
+</table>

@@ -1,0 +1,10 @@
+
+<form method="POST"> {% csrf_token %}
+    <table>
+        {{formulario_cliente.as_table}}
+    </table>
+    <table>
+        {{formulario_cuenta.as_table}}
+    </table>
+    <button type="submit">Guardar Cliente</button>
+</form>
