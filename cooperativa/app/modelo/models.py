@@ -43,7 +43,7 @@ class Cuenta(models.Model):
         cadena = str(self.saldo) + ";" + str(self.cuenta_id)
         return cadena
 
-class Trasaccion(models.Model):
+class Transaccion(models.Model):
     listaTipoTransacciones = (
         ('retiro', 'Retiro'),
         ('deposito', 'Depósito'),
@@ -57,8 +57,8 @@ class Trasaccion(models.Model):
     responsable = models.CharField(max_length = 100, null = False)
     cuenta = models.ForeignKey(Cuenta, on_delete = models.CASCADE)
 
-    def __str__(self):
-        return self.transaccion_id
+    #def __str__(self):
+    #    return self.transaccion_id
 
 class Banco(models.Model):
     nombre = models.CharField(primary_key=True, max_length=25)

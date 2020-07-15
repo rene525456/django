@@ -1,4 +1,7 @@
 from django.shortcuts import render
 
 def index(request):
-    return render(request,'index.html')
+    usuario = request.user
+    grupos = [x.name for x in usuario.groups.all()]
+    return render(request,'index.html', locals())
+

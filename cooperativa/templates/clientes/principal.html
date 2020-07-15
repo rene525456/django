@@ -1,24 +1,46 @@
-<a href="{% url 'crear_cliente' %}">Nuevo Cliente</a>
-<table>
-    <thead>
-        <tr>
-            <td>Cédula</td>
-            <td>Apellidos</td>
-            <td>Nombres</td>
-            <td>Modificar</td>
-            <td>Cuentas</td>
-        </tr>
-    </thead>
-    <tbody>
-        {% for cliente in listaCliente %}
-        <tr>
-            <td>{{cliente.cedula}}</td>
-            <td>{{cliente.apellidos}}</td>
-            <td>{{cliente.nombres}}</td>
-            <td><a href="">Modificar</a></td>
-            <td><a>Cuentas</a></td>
-        </tr>
+{% extends "index.html" %}
+{% block contenido %}
+{% load static %}  
 
-        {% endfor %}
-    </tbody>
-</table>
+<div class="app-title">
+  <div>
+    <h1><i class="fa fa-th-list"></i> Lista de Clientes</h1>
+  </div>
+  <ul class="app-breadcrumb breadcrumb side">
+    <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+    <li class="breadcrumb-item">Clientes</li>
+    <li class="breadcrumb-item active"><a href="{% url 'crear_cliente' %}">Nuevo Cliente</a></li>
+  </ul>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="tile">
+      <div class="tile-body">
+        <table class="table table-hover table-bordered" id="sampleTable">
+          <thead>
+            <tr>
+              <th>Cédula</th>
+              <th>Apellidos</th>
+              <th>Nombres</th>
+              <th>Modificar</th>
+              <th>Cuentas</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for cliente in listaCliente %}
+              <tr>
+                <td>{{cliente.cedula}}</td>
+                <td>{{cliente.apellidos}}</td>
+                <td>{{cliente.nombres}}</td>
+                <td><a href="">Modificar</a></td>
+                <td><a>Cuentas</a></td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+    
+{% endblock %}

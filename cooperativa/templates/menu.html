@@ -1,0 +1,27 @@
+<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+<aside class="app-sidebar">
+    {% if user.is_authenticated%}
+    <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" alt="User Image">
+    <div>
+        <p class="app-sidebar__user-name">{{user.first_name}}</p>
+        <p class="app-sidebar__user-designation">{{user.last_name}}</p>
+    </div>
+    </div>
+    {% endif %}
+    <ul class="app-menu">
+    {% for grupo in grupos%}
+        {% if grupo == 'gestion_clientes'%}
+        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">Clientes</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+            <ul class="treeview-menu">
+              <li><a class="treeview-item" href="{% url 'clientes' %}"><i class="icon fa fa-circle-o"></i> Lista</a></li>
+              <li><a class="treeview-item" href="{% url 'crear_cliente' %}" rel="noopener"><i class="icon fa fa-circle-o"></i> Nuevo</a></li>
+            </ul>
+          </li>
+        {% endif%}
+        {% if grupo == 'cajeros'%}
+          <li><a class="app-menu__item active" href="{% url 'transacciones' %}"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Transacciones</span></a></li>
+        {% endif%}
+    {% endfor%}
+
+    </ul>
+</aside>

@@ -1,10 +1,126 @@
+{% extends "index.html" %}
+{% block contenido %}
+      <div class="app-title">
+        <div>
+          <h1><i class="fa fa-edit"></i> Clientes</h1>
+          
+        </div>
+        <ul class="app-breadcrumb breadcrumb">
+          <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+          <li class="breadcrumb-item">Forms</li>
+          <li class="breadcrumb-item"><a href="{% url 'clientes' %}">Lista</a></li>
+        </ul>
+      </div>
+      <div class="row">
+        
+        <div class="col-md-12">
+          <div class="tile">
+            <h3 class="tile-title">Nuevo Cliente</h3>
+            <div class="tile-body">
+              <form class="form-horizontal" method="POST"> {% csrf_token %}
+                <div class="form-group row">
+                  <label class="control-label col-md-3">Cédula</label>
+                  <div class="col-md-8">
+                    {{ formulario_cliente.cedula}}    
+                    
+                  </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-md-3">Apellidos</label>
+                    <div class="col-md-8">
+                      {{ formulario_cliente.apellidos}}    
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-md-3">Nombres</label>
+                    <div class="col-md-8">
+                      {{ formulario_cliente.nombres}}    
+                    </div>
+                </div>
 
-<form method="POST"> {% csrf_token %}
-    <table>
-        {{formulario_cliente.as_table}}
-    </table>
-    <table>
-        {{formulario_cuenta.as_table}}
-    </table>
-    <button type="submit">Guardar Cliente</button>
-</form>
+                <div class="form-group row">
+                    <label class="control-label col-md-3">Genero</label>
+                    <div class="col-md-9">
+                        {% for radio in formulario_cliente.genero %}
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <div class="myradio">
+                                        {{ radio}}
+                                    </div>  
+                                </label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                  </div>
+
+
+                <div class="form-group row">
+                    <label class="control-label col-md-3">Estado Civil</label>
+                    <div class="col-md-8">
+                      {{ formulario_cliente.estadoCivil}}    
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label class="control-label col-md-3">Correo Electrónico</label>
+                    <div class="col-md-8">
+                      {{ formulario_cliente.correo}}
+                    </div>
+                  </div>
+                
+                <div class="form-group row">
+                    <label class="control-label col-md-3">Teléfono</label>
+                    <div class="col-md-6">
+                        <div class="input-group-prepend"><span class="input-group-text">#</span>{{ formulario_cliente.telefono}} </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="control-label col-md-3">Celular</label>
+                    <div class="col-md-6">
+                        <div class="input-group-prepend"><span class="input-group-text">#</span>{{ formulario_cliente.celular}} </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="control-label col-md-3">Dirección</label>
+                  <div class="col-md-8">
+                    {{formulario_cliente.direccion}}
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="control-label col-md-3">Número Cuenta</label>
+                    <div class="col-md-8">
+                      {{formulario_cuenta.numero}}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="control-label col-md-3">Tipo Cuenta</label>
+                    <div class="col-md-8">
+                      {{formulario_cuenta.tipoCuenta}}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="control-label col-md-3">Saldo</label>
+                    <div class="col-md-8">
+                      {{formulario_cuenta.saldo}}
+                    </div>
+                </div>
+
+                <div class="tile-footer">
+                    <div class="row">
+                      <div class="col-md-8 col-md-offset-3">
+                        <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Registar</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" href="#"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a>
+                      </div>
+                    </div>
+                  </div>
+              </form>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+{% endblock %}

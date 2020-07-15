@@ -1,0 +1,47 @@
+{% extends 'index.html'%}
+{% block contenido%}
+{% load static %} 
+<form method="GET">
+    <input type="text" placeholder="Ingrese la cédula" id="cedula" name="cedula"/>
+    <button type="submit">Buscar</button>
+</form>
+
+{% if cliente %}
+<div class="tile">
+    <h3 class="tile-title">{{cliente.apellidos|upper}} {{cliente.nombres|upper}} - {{cliente.cedula}}</h3>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+              <tr>
+                <td>Número</td>
+                <td>Fecha de Apertura</td>
+                <td>Tipo de Cuenta</td>
+                <td>Saldo</td>
+                <td>Estado</td>
+                <td>Depósito</td>
+                <td>Retiro</td>
+              </tr>
+            </thead>
+            <tbody>
+                {% for cuenta in cuentas %}
+                <tr>
+                    <td>{{cuenta.numero}}</td>
+                    <td>{{cuenta.fechaApertura}}</td>
+                    <td>{{cuenta.tipoCuenta}}</td>
+                    <td>{{cuenta.saldo}}</td>
+                    <td>{{cuenta.estado}}</td>
+                    <td><a href="{% url 'deposito' cliente.cedula cuenta.numero %}" class="btn btn-danger">Depósito</a></td>
+                    <td>Retiro</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+    </div>
+</div>
+{% else %}
+    <div class="tile">
+        <h3 class="tile-title">No existe cliente</h3>
+    </div>
+{% endif %}
+
+{% endblock%}
