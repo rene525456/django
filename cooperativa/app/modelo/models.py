@@ -21,6 +21,7 @@ class Cliente(models.Model):
     telefono = models.CharField(max_length=15, null = False)
     celular = models.CharField(max_length=15, null = False)
     direccion = models.TextField(max_length=75, null = False, default = "Dirección")
+    date_created = models.DateTimeField(auto_now_add = True, null = True)
 
     def __str__(self):
         return self.cedula
@@ -35,9 +36,10 @@ class Cuenta(models.Model):
     numero = models.CharField(max_length = 20, unique = True, null = False)
     fechaApertura = models.DateField(auto_now_add = True, null = False)
     tipoCuenta = models.CharField(max_length = 30, choices = listaTipoCuenta, default = 'ahorros', null = False)
-    saldo = models.DecimalField(max_digits = 10,decimal_places = 3, null = False)
+    saldo = models.DecimalField(max_digits = 10,decimal_places = 2, null = False)
     estado = models.BooleanField(default = True)
     cliente = models.ForeignKey(Cliente, on_delete = models.CASCADE)
+    date_created = models.DateTimeField(auto_now_add = True, null = True)
 
     def __str__(self):
         cadena = str(self.saldo) + ";" + str(self.cuenta_id)
@@ -52,9 +54,10 @@ class Transaccion(models.Model):
     transaccion_id = models.AutoField(primary_key = True)
     fecha = models.DateTimeField(auto_now_add = True, null = False)
     tipo = models.CharField(max_length = 30, choices = listaTipoTransacciones, null = False)
-    valor = models.DecimalField(max_digits = 10, decimal_places = 3, null = False)
+    valor = models.DecimalField(max_digits = 10, decimal_places = 2, null = False)
     descripcion = models.TextField(default='descripción de la transacción')
     responsable = models.CharField(max_length = 100, null = False)
+    date_created = models.DateTimeField(auto_now_add = True, null = True)
     cuenta = models.ForeignKey(Cuenta, on_delete = models.CASCADE)
 
     #def __str__(self):
@@ -65,3 +68,4 @@ class Banco(models.Model):
     direccion = models.CharField(max_length=225)
     telefono = models.CharField(max_length=10)
     correo = models.EmailField(max_length=200)
+    date_created = models.DateTimeField(auto_now_add = True, null = True)

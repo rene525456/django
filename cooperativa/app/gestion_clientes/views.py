@@ -9,13 +9,15 @@ def index(request):
     usuario = request.user
     #grupos = User.objects.filter(username=usuario.username)[0].groups.all()
     grupos = [ x.name for x in usuario.groups.all()]
-    if usuario.groups.filter(name = 'administrativos').exists():
+    if usuario.groups.filter(name = 'gestion_clientes').exists():
         listaCliente = Cliente.objects.all().order_by('apellidos')
         return render(request,'clientes/principal.html', locals())
     else:
         return render(request,'login/aceso_prohibido.html', locals())
 
 def crear(request):
+    usuario = request.user
+    grupos = [ x.name for x in usuario.groups.all()]
     formulario_cliente = ClienteFormulario(request.POST)
     formulario_cuenta = CuentaFormulario(request.POST)
     if request.method == 'POST':
