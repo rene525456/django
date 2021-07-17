@@ -1,7 +1,7 @@
 # django
 
 
-[Alt](Untitled_Diagram.png)
+[Alt](UC.png)
 Instalación de las libreriias para conectar django con mysql
 
 sudo apt-get install python3-dev
